@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  app:
+    build:
+      context: .
+      target: test
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=test
+      - PORT=3000
+      - WALLET_PRIVATE_KEY=x
+      - LOG_LEVEL=info
+    volumes:
+      - ./coverage:/project/coverage

@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      target: production
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - WALLET_PRIVATE_KEY=x
+      - LOG_LEVEL=info
+    volumes:
+      - ./coverage:/project/coverage
