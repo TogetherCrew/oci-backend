@@ -1,0 +1,15 @@
+name: CI Pipeline
+on:
+  push:
+    branches:
+      - '**'
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  test:
+    uses: ./.github/workflows/test.yml
+
+  build-push:
+    needs: [lint, test]
+    uses: ./.github/workflows/build-push.yml
