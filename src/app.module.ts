@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { configModules, configValidationSchema } from './config';
 import { pinoConfig } from './config/pino.config';
+import { OciModule } from './oci/oci.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { pinoConfig } from './config/pino.config';
       inject: [ConfigService],
       useFactory: pinoConfig,
     }),
+    OciModule,
   ],
   controllers: [],
   providers: [],

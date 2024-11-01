@@ -3,7 +3,7 @@ import * as Joi from 'joi';
 
 export default registerAs('app', () => ({
   nodeEnv: process.env.NODE_ENV,
-  WalletPrivateKey: process.env.WALLET_PRIVATE_KEY,
+  walletPrivateKey: process.env.WALLET_PRIVATE_KEY,
   port: parseInt(process.env.PORT, 10),
 }));
 
