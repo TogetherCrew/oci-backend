@@ -16,8 +16,8 @@ async function bootstrap() {
     new ValidationPipe({
       transform: true,
     }),
+    new ValidationPipe(),
   );
-  app.useGlobalPipes(new ValidationPipe());
   app.use(helmet());
   app.use(compression());
   app.enableCors();
