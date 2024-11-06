@@ -17,12 +17,13 @@ export class OciService {
     );
   }
 
-  private registerOciClient(chainId: number): OciClient {
+  private async registerOciClient(chainId: number): Promise<OciClient> {
     return new OciClient({
       appPrivateKey: this.privateKey,
-      chainId,
+      chainId: Number(chainId),
     });
   }
+
   async getUserProfiles(chainId: number, addr: `0x${string}`) {
     try {
       this.logger.debug({
@@ -30,10 +31,11 @@ export class OciService {
         chainId: chainId,
         addr: addr,
       });
-      const ociClient = this.registerOciClient(chainId);
+      const ociClient = await this.registerOciClient(chainId);
       return await ociClient.getUserProfiles('address', addr);
     } catch (err) {
       this.logger.error(err, 'Failed to get user profiles');
+      return [];
     }
   }
 }

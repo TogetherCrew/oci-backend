@@ -8,7 +8,7 @@ import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
 import { HttpExceptionFilter } from './shared/filters/http-exception.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { bufferLogs: true });
+  const app = await NestFactory.create(AppModule);
   app.useLogger(app.get(Logger));
   app.useGlobalInterceptors(new LoggerErrorInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
