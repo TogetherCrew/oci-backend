@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { PinoLogger, InjectPinoLogger } from 'nestjs-pino';
 import { ConfigService } from '@nestjs/config';
 import { OciClient } from 'oci-js-sdk';
+import { supportedProviders } from '../shared/constants/ociJsSdk';
 @Injectable()
 export class OciService {
   private readonly privateKey: `0x${string}`;
@@ -32,7 +33,11 @@ export class OciService {
         addr: addr,
       });
       const ociClient = await this.registerOciClient(chainId);
-      return await ociClient.getUserProfiles('address', addr);
+      return await ociClient.getUserProfiles(
+        'address',
+        addr,
+        supportedProviders,
+      );
     } catch (err) {
       this.logger.error(err, 'Failed to get user profiles');
       return [];
